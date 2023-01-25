@@ -3,8 +3,7 @@ import os
 import csv
 
 #Open CSV file and creates two lists for values in date column and profit column then prints the total values in date column as "total months:"
-PyBank_csv = os.path.join("..", "Instructions", "PyBank",
-                          "Resources", "budget_data.csv")
+PyBank_csv = os.path.join("Resources", "budget_data.csv")
 
 with open(PyBank_csv) as csv_file:
     csv_reader = csv.reader(csv_file, delimiter=",")
@@ -15,6 +14,7 @@ with open(PyBank_csv) as csv_file:
     for col in csv_reader:
         monthcount.append(col[0])
         total_profit.append(col[1])
+
 print(f"Total Months: {int(len(monthcount))}")
 
 #Calculates sum of totals in total_profit list and prints as "total: $"
@@ -38,8 +38,9 @@ print(f"Average Change: $ {float(round(average, 2))}")
 #Creates text file that prints results of analysis
 PyBanktxt = open("file.txt", "w")
 PyBanktxt.write("Financial Analysis \n")
-PyBanktxt.write("Total Months: 86 \n")
-PyBanktxt.write("Total: $22564198 \n")
-PyBanktxt.write("Average Change: $ -8311.11 \n")
-PyBanktxt.write("Greatest Decrease in profits: $-1825558 \n")
-PyBanktxt.write("Average Change: $ -8311.11 \n")
+PyBanktxt.write(f"Total Months: {len(monthcount)} \n")
+PyBanktxt.write(f"Total: ${int(profit)} \n")
+PyBanktxt.write(f"Average Change: ${float(round(average, 2))} \n")
+PyBanktxt.write(f"Greatest Increase in profits: ${int(list_dif[84])}\n")
+PyBanktxt.write(f"Greatest Decrease in profits: ${int(list_dif[0])}\n")
+
